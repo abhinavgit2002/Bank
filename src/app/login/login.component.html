@@ -5,9 +5,9 @@
         <div class="col-4">
             <h2 class="text-center mt-5 text-light ">MY BANK</h2>
             <form class="fc" action="">
-                <input (change)="acnoChange($event)" type="text " [placeholder]="accPlaceholder" class="ibox mt-5"><br><br>
-                <input (change)="pswdChange($event)" type="password" placeholder="Password" class="ibox"><br><br>
-                <input (click)="login()" type="button" value="Login" class="btn btn-primary">
+                <input #acno type="text " [placeholder]="accPlaceholder" class="ibox mt-5"><br><br>
+                <input #pswd type="password" placeholder="Password" class="ibox"><br><br>
+                <input (click)="login(acno,pswd)" type="button" value="Login" class="btn btn-primary">
             </form><br>
             <label class="text-light" for="">Not a User ?</label>&nbsp; <a href="">Register !</a>
         </div>
