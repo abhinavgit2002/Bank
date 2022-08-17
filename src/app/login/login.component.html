@@ -1,0 +1,16 @@
+<div class="container">
+    <h1 class="text-light">{{header}}{{dot}}</h1>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <h2 class="text-center mt-5 text-light ">MY BANK</h2>
+            <form class="fc" action="">
+                <input (change)="acnoChange($event)" type="text " [placeholder]="accPlaceholder" class="ibox mt-5"><br><br>
+                <input (change)="pswdChange($event)" type="password" placeholder="Password" class="ibox"><br><br>
+                <input (click)="login()" type="button" value="Login" class="btn btn-primary">
+            </form><br>
+            <label class="text-light" for="">Not a User ?</label>&nbsp; <a href="">Register !</a>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>

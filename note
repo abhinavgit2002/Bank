@@ -1,0 +1,26 @@
+1.create project - ng new project-name
+
+2.to run angular project - ng serve
+
+3.to generate component - ng g c component-name
+
+
+basic concepts 
+
+1. Module : To import libraries ( Root Module- App Module )
+
+2. Components : To generate ts,html,css, Root component-App component
+
+3. Data Binding - sharing data within a component
+
+    3.1 One way Binding - only single directional sharing
+
+        3.1.1 component (ts file) to View (html page)
+
+             3.1.1.1 String Interpolation - {{variable-name}}
+             3.1.1.2 Property Binding - [tag attribute] = "class-property"
+
+        3.1.2 View to Component
+        
+             3.1.2.1 Event Binding - [event name]= "function- call"
+             3.1.2.1 Event Binding using $event - [event name]= "function- call ($event)"
