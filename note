@@ -21,7 +21,43 @@ basic concepts
              3.1.1.2 Property Binding - [tag attribute] = "class-property"
 
         3.1.2 View to Component
-        
+          
              3.1.2.1 Event Binding - [event name]= "function- call"
              3.1.2.2 Event Binding using $event - [event name]= "function- call ($event)"
              3.1.2.3 Template Referencing variable - syntax : #variable-name
+
+     3.2 Two way Binding - same time data sharing in both direction
+
+        3.2.1 FormsModule - import in Appmodule
+          ngModel - syntax : [(ngModel)]="variable name" set name attribute if its in a form tag
+
+4. Component path set up  -router-outlet selector
+
+5. Dependency Injection - inside constructor
+
+6. angular service
+
+7. ngSubmit
+
+8. Angular form
+
+     8.1 Template Driven Forms
+
+     8.2 Model Driven Forms - ReactivrForms - Import ReactivrFormsModule
+          (form group,form array,form control)
+
+9. Angular Directives - DOM Manipulation
+
+     9.1 Component Directives
+
+     9.2 Structural Directives - prefix *
+
+          9.2.1 *ngIf
+          9.2.2 *ngFor
+
+     9.3 Attribute Directives
+
+10. Parent Child Communication
+
+     10.1 parent-child - @Input
+     10.2 child- parent -@OUtpit()

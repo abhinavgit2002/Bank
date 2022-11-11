@@ -4,12 +4,20 @@
         <div class="col-4"></div>
         <div class="col-4">
             <h2 class="text-center mt-5 text-light ">MY BANK</h2>
-            <form class="fc" action="">
-                <input #acno type="text " [placeholder]="accPlaceholder" class="ibox mt-5"><br><br>
-                <input #pswd type="password" placeholder="Password" class="ibox"><br><br>
-                <input (click)="login(acno,pswd)" type="button" value="Login" class="btn btn-primary">
+            <form [formGroup]="loginForm" class="fc" action="" (ngSubmit)="login()">
+                <input formControlName="acno" name="acno" type="text " [placeholder]="accPlaceholder" class="ibox mt-5"><br><br>
+                <div *ngIf="this.loginForm.get('acno')?.touched&&this.loginForm.get('acno')?.errors"
+                    style="color: red;">
+                    Invalid Account Number
+                </div>
+                <input formControlName="pswd" name="pswd" type="password" placeholder="Password" class="ibox"><br><br>
+                <div *ngIf="this.loginForm.get('pswd')?.touched&&this.loginForm.get('pswd')?.errors"
+                    style="color: red;">
+                    Invalid Password
+                </div>
+                <input  type="submit" value="Login" class="btn btn-primary">
             </form><br>
-            <label class="text-light" for="">Not a User ?</label>&nbsp; <a href="">Register !</a>
+            <label class="text-light" for="">Not a User ?</label>&nbsp; <a routerLink="register">Register !</a>
         </div>
         <div class="col-4"></div>
     </div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -16,22 +19,14 @@ export class LoginComponent implements OnInit {
   acno = ""
   pswd = ""
 
-  //database
+  loginForm = this.formBuilder.group({
 
-  database : any = {
-    1000: {
-      acno: 1000, username: 'Neer', password: 1000, balance: 5000
-    },
-    1001: {
-      acno: 1001, username: 'Laisha', password: 1001, balance: 6000
-    },
-    1002: {
-      acno: 1002, username: 'Vyom', password: 1002, balance: 5000
-    },
+    acno: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+    pswd: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]]
+  })
 
-  }
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
   }
@@ -47,42 +42,33 @@ export class LoginComponent implements OnInit {
 
   }
 
-  // login() {
-  //   var acno = this.acno
-  //   var pswd = this.pswd
-
-  //   let userDetails = this.database
-  //   if (acno in userDetails) {
-  //     if (pswd == userDetails[acno]['password']) {
-  //       alert('Login Successfull')
-  //     }
-  //     else {
-  //       alert('Incurrect Password')
-  //     }
-  //   } else {
-  //     alert('User does not exist')
-  //   }
-  // }
+  login() {
+    var acno = this.loginForm.value.acno
+    var pswd = this.loginForm.value.pswd
 
 
-  login(a:any,p:any) {
+    if (this.loginForm.valid) {
+      const result = this.dataService.login(acno, pswd)
+        .subscribe(
+          //status:200
+          (result: any) => {
+            localStorage.setItem('token', JSON.stringify(result.token))
+            localStorage.setItem('currentUser', JSON.stringify(result.currentUser))
+            localStorage.setItem('currentAcno', JSON.stringify(result.currentAcno))
+            alert(result.message)
+            this.router.navigateByUrl('dashboard')
 
-    console.log(a);
-    
-    var acno = a.value
-    var pswd = p.value
 
-    let userDetails = this.database
-    if (acno in userDetails) {
-      if (pswd == userDetails[acno]['password']) {
-        alert('Login Successfull')
-      }
-      else {
-        alert('Incurrect Password')
-      }
+          },
+          result => {
+            alert(result.error.message)
+          })
+
     } else {
-      alert('User does not exist')
+      alert('Invalid form')
     }
-  }
 
+  }
 }
+
+  
